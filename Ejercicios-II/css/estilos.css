@@ -1,0 +1,111 @@
+body {
+    background-color: rgb(51, 63, 77);
+}
+
+section {
+  margin-bottom: 60px; /* separa cada bloque de producto */
+}
+
+h1 {
+    color: rgb(83, 109, 143);
+    background-color: white;
+    text-align: center;
+    font-size: 4em;
+    font-family: 'Impact', Charcoal, sans-serif;
+}
+
+p {
+    color: white;
+    background-color: rgb(51, 63, 77);
+    text-align: left;
+    font-family: 'Arial', Gadget, sans-serif;
+}
+
+h2 {
+    color: #c5a395;
+    font-size: 2em;
+    font-family: Arial Black, Arial, sans-serif;
+    font-style: italic
+}
+
+h3 {
+    color: #a1c1cb;
+    font-size: 2em;
+    font-family: Arial Black, Arial, sans-serif;
+    font-style: italic
+}
+
+h4 {
+    color: #b8bdc2;
+    font-size: 2em;
+    font-family: Arial Black, Arial, sans-serif;
+    font-style: italic
+}
+
+h5 {
+    color: #8d959f;
+    font-size: 2em;
+    font-family: Arial Black, Arial, sans-serif;
+    font-style: italic
+}
+
+h6 {
+    color: #b0b3b0;
+    font-size: 2em;
+    font-family: Arial Black, Arial, sans-serif;
+    font-style: italic
+}
+.aspiradora-container {
+  border: 4px solid #c5a395;
+  display: block;
+  width: fit-content;
+  margin-left: 50px; /* separa del borde izquierdo de la página */
+}
+
+.aspiradora-container img {
+  display: block;
+}
+
+.celulares-container {
+  border: 4px solid #a1c1cb;
+  display: block;
+  width: fit-content;
+  margin-left: 50px; /* separa del borde izquierdo de la página */
+}
+
+.celulares-container img {
+  display: block;
+}
+
+.consolas-container {
+  border: 4px solid #b8bdc2;
+  display: block;
+  width: fit-content;
+  margin-left: 50px; /* separa del borde izquierdo de la página */
+}
+
+.consolas-container img {
+  display: block;
+}
+
+.home-theaters-container {
+  border: 4px solid #8d959f;
+  display: block;
+  width: fit-content;
+  margin-left: 50px; /* separa del borde izquierdo de la página */
+}
+
+.home-theaters-container img {
+  display: block;
+}
+
+.televisores-container {
+  border: 4px solid #b0b3b0;
+  display: block;
+  width: fit-content;
+  margin-left: 50px; /* separa del borde izquierdo de la página */
+}
+
+.televisores-container img {
+  display: block;
+}
