@@ -164,7 +164,7 @@ select option {
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%; /* Botón ancho para contacto */
+  width: 100%; 
   text-transform: uppercase;
 }
 
