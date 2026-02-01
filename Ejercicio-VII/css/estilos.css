@@ -1,0 +1,105 @@
+/* Hola profe, no logre que me quede el gato por sobre la card, no se si en la correccion me pueda ayudar a entender que me falto o que hice mal. Muchas gracias! */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+html {
+    background-color: #4a7596;
+    height: 100%;
+}
+
+body {
+    
+    margin: 0;
+    padding: 120px 0 50px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('ruta-de-tu-imagen.png'); 
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-image: url('./assets/gato.png'), url('./assets/ciudad.png'); 
+    background-position:  bottom 20px, bottom center;
+    background-repeat: no-repeat, repeat-x;
+    background-attachment: fixed, fixed;
+    background-size: auto 250px;
+}
+
+h1 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 25px 0;
+    background-color: #d8434e;
+    color: white;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    font-size: 3.5rem;
+    font-weight: normal;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+h2, p {
+    background-color: #a2d2df;
+    width: 85%;
+    max-width: 1290px;
+    margin: 0; 
+    padding: 15px 50px;
+    box-sizing: border-box;
+    box-shadow: inset 25px 0 20px -15px rgba(0,0,0,0.5);
+}
+
+h2:first-of-type {
+    margin-top: 50px;
+    padding-top: 60px;
+    border-radius: 20px 20px 0 0;
+    box-shadow: inset 25px 25px 30px -15px rgba(0,0,0,0.5);
+}
+
+
+p:last-of-type {
+    padding-bottom: 60px;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 50px;
+}
+
+
+h2 {
+    color: #d8434e;
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: normal;
+}
+
+
+h2 + p 
+{  text-align: center;
+  font-style: italic;
+  font-size: 1.2rem;
+  padding-bottom: 30px;
+}
+  
+
+h2 + p::before { content: "- "; }
+h2 + p::after { content: "-"; }
+
+p:not(h2 + p)::first-letter {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    float: left;
+    margin-right: 5px;
+    line-height: 0.5;
+    color: #203750;
+    padding-top: 8px;
+}
+
+p {
+    line-height: 1.6;
+    text-align: justify;
+    color: #333;
+}
+
