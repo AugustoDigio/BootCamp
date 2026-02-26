@@ -1,0 +1,64 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="row w-100">
+        <div class="col-md-6 col-lg-4 mx-auto">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4 fw-bold">Iniciar Sesión</h2>
+
+                    <form action="/login" method="POST">
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-semibold">Correo Electrónico</label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email"
+                                placeholder="usuario@ejemplo.com" required />
+                            <small class="form-text text-muted">Ingresa tu correo registrado</small>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-semibold">Contraseña</label>
+                            <input type="password" class="form-control form-control-lg" id="password" name="password"
+                                placeholder="••••••••" required />
+                            <small class="form-text text-muted">Mínimo 6 caracteres</small>
+                        </div>
+
+                        <!-- Remember me -->
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="remember" name="remember" />
+                                <label class="form-check-label" for="remember">
+                                    Recuérdame
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Login Button -->
+                        <button type="submit" class="btn btn-primary btn-lg w-100 mb-3 fw-bold">
+                            Iniciar Sesión
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <hr class="my-4" />
+
+                    <!-- Links -->
+                    <div class="text-center">
+                        <p class="mb-2">
+                            <a href="/recuperar-password" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                        </p>
+                        <p>
+                            ¿No tienes cuenta?
+                            <a href="/registro" class="text-decoration-none fw-semibold">Regístrate aquí</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .min-vh-100 {
+        min-height: 100vh;
+    }
+</style>

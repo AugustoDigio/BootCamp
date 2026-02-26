@@ -1,0 +1,23 @@
+{
+  "name": "clase-05-nodesass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass public/sass:public/css",
+    "dev": "nodemon index.cjs",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sass": "^1.97.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

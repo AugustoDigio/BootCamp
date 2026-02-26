@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios DOM - Práctica Progresiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .bloque {
+            background: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .bloque h2 {
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .ejercicio {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #2196F3;
+        }
+
+        .ejercicio h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+
+        input, textarea, button {
+            margin: 5px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            font-family: monospace;
+            resize: vertical;
+        }
+
+        .resultado {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            min-height: 50px;
+        }
+
+        .lista-ejemplo {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .lista-ejemplo li {
+            margin: 5px 0;
+        }
+
+        input:disabled {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Ejercicios de Manipulación del DOM</h1>
+    <p style="margin: 15px 0; color: #666;">Completa cada ejercicio en orden. El archivo JS está en: <code>js/main.js</code></p>
+
+    <!-- ========================================
+         BLOQUE 1: EVENTOS Y CARGA DEL DOM
+         ======================================== -->
+    <div class="bloque">
+        <h2>📦 Bloque 1: Eventos y Carga del DOM</h2>
+        
+        <!-- Ejercicio 1.1 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 1.1 - Detectando la carga</h3>
+            <p>Cuando el DOM cargue, debe aparecer en consola: "¡Página lista!"</p>
+            <h1 id="titulo-ej1">Título de prueba</h1>
+        </div>
+
+        <!-- Ejercicio 1.2 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 1.2 - Cambio detectado</h3>
+            <p>Al escribir en el input, muestra su valor en consola</p>
+            <input type="text" id="input-ej1-2" placeholder="Escribe algo aquí...">
+        </div>
+    </div>
+
+    <!-- ========================================
+         BLOQUE 2: SELECCIÓN Y MODIFICACIÓN
+         ======================================== -->
+    <div class="bloque">
+        <h2>🎯 Bloque 2: Selección y Modificación de Elementos</h2>
+        
+        <!-- Ejercicio 2.1 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 2.1 - Habilitar campos</h3>
+            <p>Al hacer click en "Habilitar", los 3 inputs deben activarse</p>
+            <input type="text" class="input-deshabilitable" placeholder="Input 1" disabled>
+            <input type="text" class="input-deshabilitable" placeholder="Input 2" disabled>
+            <input type="text" class="input-deshabilitable" placeholder="Input 3" disabled>
+            <br>
+            <button id="btn-habilitar">Habilitar campos</button>
+        </div>
+
+        <!-- Ejercicio 2.2 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 2.2 - Cargar contenido inicial</h3>
+            <p>Este textarea debe cargarse automáticamente con: "Contenido predefinido"</p>
+            <textarea id="textarea-ej2-2"></textarea>
+        </div>
+    </div>
+
+    <!-- ========================================
+         BLOQUE 3: MANIPULACIÓN DE INNERHTML
+         ======================================== -->
+    <div class="bloque">
+        <h2>✏️ Bloque 3: Manipulación de innerHTML</h2>
+        
+        <!-- Ejercicio 3.1 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 3.1 - Reemplazar contenido</h3>
+            <textarea id="origen-ej3-1" placeholder="Escribe HTML aquí..."></textarea>
+            <button id="btn-copiar">Copiar</button>
+            <div id="resultado-ej3-1" class="resultado">El contenido aparecerá aquí</div>
+        </div>
+
+        <!-- Ejercicio 3.2 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 3.2 - Agregar contenido</h3>
+            <textarea id="origen-ej3-2" placeholder="Escribe HTML aquí..."></textarea>
+            <button id="btn-agregar">Agregar</button>
+            <div id="resultado-ej3-2" class="resultado">El contenido se sumará aquí</div>
+        </div>
+
+        <!-- Ejercicio 3.3 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 3.3 - Agregar múltiples veces</h3>
+            <textarea id="origen-ej3-3" placeholder="Escribe HTML aquí..."></textarea>
+            <button id="btn-agregar-3">Agregar 3 veces</button>
+            <div id="resultado-ej3-3" class="resultado">Aquí se agregará 3 veces</div>
+        </div>
+
+        <!-- Ejercicio 3.4 -->
+        <div class="ejercicio">
+            <h3>Ejercicio 3.4 - Agregar n veces</h3>
+            <textarea id="origen-ej3-4" placeholder="Escribe HTML aquí..."></textarea>
+            <button id="btn-agregar-n">Agregar n veces</button>
+            <div id="resultado-ej3-4" class="resultado">Aquí se agregará n veces</div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         BLOQUE 4: TRANSFORMACIÓN DE TEXTO
+         ======================================== -->
+    <div class="bloque">
+        <h2>🔤 Bloque 4: Transformación de Texto</h2>
+        
+        <div class="ejercicio">
+            <h3>Ejercicios 4.1 y 4.2 - Vaciar y transformar</h3>
+            <p>Escribe algo en el textarea y prueba los botones</p>
+            <textarea id="origen-ej4">Escribe <strong>HTML</strong> aquí para probarlo...</textarea>
+            <div>
+                <button id="btn-copiar-ej4">Copiar al resultado</button>
+                <button id="btn-vaciar">Limpiar</button>
+                <button id="btn-mayusculas">MAYÚSCULAS</button>
+                <button id="btn-minusculas">minúsculas</button>
+            </div>
+            <div id="resultado-ej4" class="resultado">Resultado aquí</div>
+        </div>
+    </div>
+
+    <!-- ========================================
+         BLOQUE 5: TRABAJANDO CON COLECCIONES
+         ======================================== -->
+    <div class="bloque">
+        <h2>📝 Bloque 5: Trabajando con Colecciones</h2>
+        
+        <div class="ejercicio">
+            <h3>Ejercicio 5.1 - Marcar items completados</h3>
+            <p>Al hacer click, debe agregarse [✓] al inicio de cada item</p>
+            <ul class="lista-ejemplo">
+                <li>Tarea 1</li>
+                <li>Tarea 2</li>
+                <li>Tarea 3</li>
+                <li>Tarea 4</li>
+                <li>Tarea 5</li>
+            </ul>
+            <button id="btn-marcar">Marcar como completados</button>
+        </div>
+    </div>
+
+    <!-- ========================================
+         EJERCICIO INTEGRADOR FINAL
+         ======================================== -->
+    <div class="bloque" style="border: 3px solid #FF5722;">
+        <h2>🏆 Ejercicio Integrador Final</h2>
+        
+        <div class="ejercicio">
+            <h3>Mini-App completa</h3>
+            <p>Combina todo lo aprendido:</p>
+            <textarea id="textarea-integrador"></textarea>
+            <div>
+                <button id="btn-int-copiar">Copiar</button>
+                <button id="btn-int-agregar">Agregar</button>
+                <button id="btn-int-agregar-3">Agregar 3x</button>
+                <button id="btn-int-mayusculas">MAYÚSCULAS</button>
+                <button id="btn-int-limpiar">Limpiar</button>
+                <button id="btn-int-aplicar" disabled>Aplicar</button>
+            </div>
+            <div id="vista-previa-integrador" class="resultado">Vista previa</div>
+        </div>
+    </div>
+
+    <!-- Vinculación del archivo JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>
+```
+
+**Ahora crea la carpeta y archivo JS:**
+
+Estructura de carpetas:
+```
+tu-proyecto/
+├── index.html (el archivo de arriba)
+└── js/
+    └── main.js (aquí escribirás tu código)
