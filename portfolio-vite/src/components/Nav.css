@@ -1,0 +1,122 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 40px;
+  transition: all 0.3s ease;
+}
+
+.nav--scrolled {
+  background: rgba(8, 12, 16, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 40px;
+}
+
+.nav__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.nav__logo:hover { color: var(--accent); }
+
+.nav__logo-bracket {
+  color: var(--accent);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text2);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav__link:hover { color: var(--accent); }
+
+.nav__link-num {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.nav__cta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 8px 18px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.nav__cta:hover {
+  background: rgba(0, 229, 176, 0.08);
+}
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav__burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: all 0.3s;
+}
+
+.nav__burger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger--open span:nth-child(2) { opacity: 0; }
+.nav__burger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .nav { padding: 20px 24px; }
+  .nav--scrolled { padding: 14px 24px; }
+  .nav__burger { display: flex; }
+
+  .nav__links {
+    position: fixed;
+    top: 0; right: -100%;
+    height: 100vh;
+    width: 75vw;
+    max-width: 300px;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    transition: right 0.35s ease;
+    padding: 40px;
+  }
+
+  .nav__links--open { right: 0; }
+  .nav__link { font-size: 16px; }
+}
