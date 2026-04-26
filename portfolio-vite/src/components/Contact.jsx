@@ -29,7 +29,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="contact__item-label">Email</div>
-                  <div className="contact__item-value">augusto.digiovambattista@gmail.com</div>
+                  <div className="contact__item-value">augudigio@gmail.com</div>
                 </div>
               </a>
 
