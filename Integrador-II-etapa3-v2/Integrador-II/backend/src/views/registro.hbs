@@ -1,0 +1,153 @@
+<section class="auth-section">
+  <div class="container">
+    <div class="auth-card" style="max-width: 480px;">
+      <div class="text-center mb-4">
+        <div class="d-inline-flex align-items-center gap-2 mb-3">
+          <span class="brand-icon"><i class="bi bi-cpu-fill"></i></span>
+          <span class="brand-text">TECH<span class="brand-accent">STORE</span></span>
+        </div>
+        <h2 class="auth-title">Crear cuenta</h2>
+        <p class="auth-subtitle">Registrate y empezá a comprar</p>
+      </div>
+
+      {{#if error}}
+      <div class="alert-error">
+        <i class="bi bi-exclamation-circle me-2"></i>{{error}}
+      </div>
+      {{/if}}
+
+      <form action="/registro" method="POST" id="registroForm" novalidate>
+        <div class="row g-3 mb-3">
+          <div class="col-6">
+            <label class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Juan" />
+            <div class="field-error" id="nombreError"></div>
+          </div>
+          <div class="col-6">
+            <label class="form-label">Apellido</label>
+            <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Pérez" />
+            <div class="field-error" id="apellidoError"></div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" id="regEmail"
+            placeholder="usuario@ejemplo.com" />
+          <div class="field-error" id="regEmailError"></div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Contraseña</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="regPassword" name="password"
+              placeholder="Mínimo 6 caracteres" />
+            <button type="button" class="btn-toggle-pass" onclick="togglePass('regPassword', this)">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+          <div class="field-error" id="regPasswordError"></div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Confirmar contraseña</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+              placeholder="Repetí tu contraseña" />
+            <button type="button" class="btn-toggle-pass" onclick="togglePass('confirmPassword', this)">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
+          <div class="field-error" id="confirmError"></div>
+        </div>
+
+        <button type="submit" class="btn-primary-ts">
+          <i class="bi bi-person-plus me-2"></i>Crear cuenta
+        </button>
+      </form>
+
+      <div class="text-center mt-4">
+        <p style="color: var(--ts-muted); font-size:0.9rem; margin-bottom:0;">
+          ¿Ya tenés cuenta?
+          <a href="/login" class="auth-link ms-1">Iniciá sesión</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.btn-toggle-pass {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--ts-muted); cursor: pointer;
+  padding: 0; font-size: 1rem; transition: color 0.2s;
+}
+.btn-toggle-pass:hover { color: var(--ts-accent); }
+.alert-error {
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444; border-radius: 10px; padding: 0.75rem 1rem;
+  font-size: 0.9rem; margin-bottom: 1.25rem;
+}
+.field-error { color: #ef4444; font-size: 0.8rem; margin-top: 0.3rem; min-height: 1.1rem; }
+.form-control.is-invalid { border-color: rgba(239,68,68,0.5) !important; }
+</style>
+
+<script>
+function togglePass(fieldId, btn) {
+  const input = document.getElementById(fieldId);
+  const icon = btn.querySelector('i');
+  if (input.type === 'password') { input.type = 'text'; icon.className = 'bi bi-eye-slash'; }
+  else { input.type = 'password'; icon.className = 'bi bi-eye'; }
+}
+
+document.getElementById('registroForm').addEventListener('submit', function(e) {
+  let valid = true;
+
+  const fields = {
+    nombre: { el: document.getElementById('nombre'), err: document.getElementById('nombreError'), msg: 'El nombre es obligatorio' },
+    apellido: { el: document.getElementById('apellido'), err: document.getElementById('apellidoError'), msg: 'El apellido es obligatorio' },
+    email: { el: document.getElementById('regEmail'), err: document.getElementById('regEmailError'), msg: 'El email es obligatorio' },
+    password: { el: document.getElementById('regPassword'), err: document.getElementById('regPasswordError'), msg: 'La contraseña es obligatoria' },
+    confirm: { el: document.getElementById('confirmPassword'), err: document.getElementById('confirmError'), msg: '' },
+  };
+
+  // Reset
+  Object.values(fields).forEach(f => { f.el.classList.remove('is-invalid'); f.err.textContent = ''; });
+
+  // Validar campos requeridos
+  ['nombre', 'apellido', 'password'].forEach(key => {
+    if (!fields[key].el.value.trim()) {
+      fields[key].el.classList.add('is-invalid');
+      fields[key].err.textContent = fields[key].msg;
+      valid = false;
+    }
+  });
+
+  // Validar email
+  if (!fields.email.el.value.trim()) {
+    fields.email.el.classList.add('is-invalid');
+    fields.email.err.textContent = 'El email es obligatorio';
+    valid = false;
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.el.value)) {
+    fields.email.el.classList.add('is-invalid');
+    fields.email.err.textContent = 'Ingresá un email válido';
+    valid = false;
+  }
+
+  // Validar contraseña mínimo 6 chars
+  if (fields.password.el.value && fields.password.el.value.length < 6) {
+    fields.password.el.classList.add('is-invalid');
+    fields.password.err.textContent = 'Mínimo 6 caracteres';
+    valid = false;
+  }
+
+  // Validar confirmación
+  if (fields.password.el.value !== fields.confirm.el.value) {
+    fields.confirm.el.classList.add('is-invalid');
+    fields.confirm.err.textContent = 'Las contraseñas no coinciden';
+    valid = false;
+  }
+
+  if (!valid) e.preventDefault();
+});
+</script>
