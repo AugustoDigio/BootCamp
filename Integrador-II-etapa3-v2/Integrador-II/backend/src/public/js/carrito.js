@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function actualizarBadge() {
   const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
   const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-  const badge = document.getElementById('cartCount');
-  if (badge) {
-    badge.textContent = total;
-    badge.style.display = total > 0 ? 'flex' : 'none';
-  }
+  ['cartCount', 'cartCountMobile'].forEach(id => {
+    const badge = document.getElementById(id);
+    if (badge) {
+      badge.textContent = total;
+      badge.style.display = total > 0 ? 'flex' : 'none';
+    }
+  });
 }
 
 function agregarAlCarrito(producto) {
