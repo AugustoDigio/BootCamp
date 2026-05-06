@@ -1,11 +1,10 @@
-const Brevo = require('@getbrevo/brevo');
-const defaultClient = Brevo.ApiClient.instance;
-defaultClient.authentications['api-key'].apiKey = process.env.BREVO_API_KEY;
-const apiInstance = new Brevo.TransactionalEmailsApi();
+const { BrevoClient } = require('@getbrevo/brevo');
+
+const client = new BrevoClient({ apiKey: process.env.BREVO_API_KEY });
 
 const enviarMail = async (to, subject, htmlContent) => {
   try {
-    await apiInstance.sendTransacEmail({
+    await client.transactionalEmails.sendTransacEmail({
       sender: { name: 'TechStore', email: process.env.MAIL_USER },
       to: [{ email: to }],
       subject,
