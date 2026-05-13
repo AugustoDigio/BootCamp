@@ -15,6 +15,8 @@ const { enviarMailBienvenida, enviarMailPedido } = require('./services/mail.serv
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 // Handlebars
 app.engine('hbs', engine({
   extname: '.hbs',
@@ -39,7 +41,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
-  cookie: { maxAge: 1000 * 60 * 60 * 24 }
+  cookie: { 
+    maxAge: 1000 * 60 * 60 * 24,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax'
+  }
 }));
 
 // Pasar usuario a todas las vistas
