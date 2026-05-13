@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
 
 const enviarMail = async (to, subject, html) => {
   try {
+    console.log('Intentando enviar mail a:', to);
     await transporter.sendMail({
       from: `"TechStore" <${process.env.MAIL_USER}>`,
       to,
@@ -22,8 +23,8 @@ const enviarMail = async (to, subject, html) => {
   }
 };
 
-const enviarMailBienvenida = (nombre, email) => {
-  enviarMail(
+const enviarMailBienvenida = async (nombre, email) => {
+  await enviarMail(
     email,
     '¡Bienvenido a TechStore! 🚀',
     `<div style="font-family:Arial,sans-serif;background:#0a0a0f;color:#e8e8f0;padding:40px;border-radius:12px;">
@@ -35,7 +36,7 @@ const enviarMailBienvenida = (nombre, email) => {
   );
 };
 
-const enviarMailPedido = (email, nombre, items, total) => {
+const enviarMailPedido = async (email, nombre, items, total) => {
   const itemsHTML = items.map(i =>
     `<tr>
       <td style="padding:8px;border-bottom:1px solid #333;">${i.nombre}</td>
@@ -44,7 +45,7 @@ const enviarMailPedido = (email, nombre, items, total) => {
     </tr>`
   ).join('');
 
-  enviarMail(
+  await enviarMail(
     email,
     '✅ Confirmación de tu pedido — TechStore',
     `<div style="font-family:Arial,sans-serif;background:#0a0a0f;color:#e8e8f0;padding:40px;border-radius:12px;">
@@ -68,8 +69,8 @@ const enviarMailPedido = (email, nombre, items, total) => {
   );
 };
 
-const enviarMailRecuperacion = (nombre, email) => {
-  enviarMail(
+const enviarMailRecuperacion = async (nombre, email) => {
+  await enviarMail(
     email,
     'Recuperación de contraseña — TechStore',
     `<div style="font-family:Arial,sans-serif;background:#0a0a0f;color:#e8e8f0;padding:40px;border-radius:12px;">
