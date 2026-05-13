@@ -1,18 +1,12 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const enviarMail = async (to, subject, html) => {
   try {
     console.log('Intentando enviar mail a:', to);
-    await transporter.sendMail({
-      from: `"TechStore" <${process.env.MAIL_USER}>`,
+    await resend.emails.send({
+      from: 'TechStore <noreply@techstore.com>',
       to,
       subject,
       html,
