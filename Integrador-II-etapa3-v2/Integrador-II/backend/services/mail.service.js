@@ -1,14 +1,20 @@
-const { BrevoClient } = require('@getbrevo/brevo');
+const nodemailer = require('nodemailer');
 
-const client = new BrevoClient({ apiKey: process.env.BREVO_API_KEY });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
+  },
+});
 
-const enviarMail = async (to, subject, htmlContent) => {
+const enviarMail = async (to, subject, html) => {
   try {
-    await client.transactionalEmails.sendTransacEmail({
-      sender: { name: 'TechStore', email: process.env.MAIL_USER },
-      to: [{ email: to }],
+    await transporter.sendMail({
+      from: `"TechStore" <${process.env.MAIL_USER}>`,
+      to,
       subject,
-      htmlContent,
+      html,
     });
     console.log(`✅ Mail enviado a ${to}`);
   } catch (error) {
@@ -32,9 +38,9 @@ const enviarMailBienvenida = (nombre, email) => {
 const enviarMailPedido = (email, nombre, items, total) => {
   const itemsHTML = items.map(i =>
     `<tr>
-      <td style="padding:8px;border-bottom:1px solid #1a1a27;">${i.nombre}</td>
-      <td style="padding:8px;border-bottom:1px solid #1a1a27;text-align:center;">${i.cantidad}</td>
-      <td style="padding:8px;border-bottom:1px solid #1a1a27;text-align:right;">$${(i.precio * i.cantidad).toLocaleString('es-AR')}</td>
+      <td style="padding:8px;border-bottom:1px solid #333;">${i.nombre}</td>
+      <td style="padding:8px;border-bottom:1px solid #333;text-align:center;">${i.cantidad}</td>
+      <td style="padding:8px;border-bottom:1px solid #333;text-align:right;">$${(i.precio * i.cantidad).toLocaleString('es-AR')}</td>
     </tr>`
   ).join('');
 
