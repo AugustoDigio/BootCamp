@@ -180,8 +180,11 @@ app.post('/registro', async (req, res) => {
 app.post('/api/pedido-con-mail', async (req, res) => {
   try {
     const { items, total, cliente } = req.body;
+    console.log('Session usuario:', req.session.usuario);
+    console.log('Cliente del body:', cliente);
     const emailDestino = cliente?.email || req.session.usuario?.email;
     const nombreDestino = cliente?.nombre || req.session.usuario?.nombre || 'cliente';
+    console.log('Email destino:', emailDestino);
     if (emailDestino) enviarMailPedido(emailDestino, nombreDestino, items, total);
     res.json({ ok: true });
   } catch (error) {
