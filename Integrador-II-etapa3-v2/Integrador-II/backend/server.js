@@ -185,7 +185,7 @@ app.post('/api/pedido-con-mail', async (req, res) => {
     const emailDestino = cliente?.email || req.session.usuario?.email;
     const nombreDestino = cliente?.nombre || req.session.usuario?.nombre || 'cliente';
     console.log('Email destino:', emailDestino);
-    if (emailDestino) enviarMailPedido(emailDestino, nombreDestino, items, total);
+    if (emailDestino) await enviarMailPedido(emailDestino, nombreDestino, items, total);
     res.json({ ok: true });
   } catch (error) {
     res.status(500).json({ error: error.message });
